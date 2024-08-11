@@ -42,7 +42,29 @@ In a seperate session:
 
 In a seperate session:
 
-1. ping 10.0.0.1
+1. ping 10.0.0.2
+
+Wireshark should report something like:
+
+    156.194657538 da:a9:00:1b:e4:e4 → Broadcast    ARP 42 Who has 10.0.0.2? Tell 10.0.0.1
+
+tap_access should show:
+
+            TAP Data (42 bytes): ff:ff:ff:ff:ff:ff:da:a9:00:1b:e4:e4:08:06:00:01:08:00:06:04:00:01:da:a9:00:1b:e4:e4:0a:00:00:01:00:00:00:00:00:00:0a:00:00:08:
+
+Where the adress after the "ff:ff:ff:ff:ff:ff" should be the mac address of the tap interface as reported by 
+
+```
+    ifconfig -a
+
+        tapint: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+                inet 10.0.0.1  netmask 255.255.255.0  broadcast 0.0.0.0
+                ether da:a9:00:1b:e4:e4  txqueuelen 1000  (Ethernet)
+                RX packets 0  bytes 0 (0.0 B)
+                RX errors 0  dropped 0  overruns 0  frame 0
+                TX packets 438  bytes 18396 (17.9 KiB)
+                TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
 
 ## References
 

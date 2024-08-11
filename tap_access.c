@@ -81,7 +81,7 @@ repeat:
 	numbytes=read(tapfd, buf, 2000);
 	if(numbytes<=0) { usleep(100); goto repeat;}
 	
-	printf("\tTAP Data:");
+	printf("\tTAP Data (%d bytes): ", numbytes);
 	for (i=0; i<numbytes; i++) printf("%02x:", buf[i]);
 	printf("\n\n");
    
